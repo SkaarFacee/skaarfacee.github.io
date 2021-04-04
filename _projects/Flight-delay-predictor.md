@@ -92,3 +92,7 @@ After running the models and testing their classification accuracies we choose t
 ---
 
 <h3 align="center"> You can always take a look at the github repo in order to contribute to the project </h3>
+
+<p class="text-center">
+{% include elements/button.html link="https://github.com/SkaarFacee/Flight-Delay-Predictor" text="Github Repo" %}
+</p>
