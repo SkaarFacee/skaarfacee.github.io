@@ -2,7 +2,7 @@
 name: Flight Delay Predictor 
 tools: [Machine Learning,skelarn, Flask]
 image: https://i.ibb.co/M1VX2xc/flight.jpg
-description: Flight Delay predictor. 
+description: Machine learning based predictor that can predict whether a flight is delayed or not. 
 ---
 # Introduction
 Flight delays in today's world is a major concern. This is directly dependent on the fact that people have begun to increasingly use aviation as a mode of transportation. However the process is is still complicated, as a result of which delays in flights can cause major loss to travellers time. Our project aims to help people in this section. By providing information about flights and their respective delays people can plan and schedule activities based of it. <br> Flight delay is inevitable and it plays an important role in both profits and loss of the airlines. An accurate estimation of flight delay is critical for airlines because the results can be applied to increase customer satisfaction and incomes of airline agencies. There have been many researches on modeling and predicting flight delays, where most of them have been trying to predict the delay through extracting important characteristics and most related features. However, most of the proposed methods are not accurate enough because of massive volume data, dependencies and extreme number of parameters. In our project the aim was ultimately to be able to predict flight delays to users, witch minimal parameters possible.<br> Our project to a great extent has been able to do and possibly in future iterations would be able to be more successful.
