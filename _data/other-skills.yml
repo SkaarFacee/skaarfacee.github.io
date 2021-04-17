@@ -1,0 +1,11 @@
+- name: Adobe Photoshop
+  percentage: 95
+  color: info
+
+- name: Avid Reader
+  percentage: 90
+  color: success
+
+- name: Gaming 
+  percentage: 60
+  color: danger
