@@ -8,5 +8,5 @@ description: A Django based web app.
 This is another project I am working on based on Django framework. It's main idea is to automate the process of getting mails and goodies from the mailbox of my university so that students need not manually go to the mailroom, to check whether theie item has arrived.
 
 <p class="text-center">
-{% include elements/button.html link="https://github.com/adiaux/dummy" text="Learn More" %}
+{% include elements/button.html link="https://github.com/skaarfacee/dummy" text="Learn More" %}
 </p>

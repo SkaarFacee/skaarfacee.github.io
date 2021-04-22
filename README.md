@@ -2,7 +2,7 @@
 This is my personal blog.
 ## How to setup this website :sparkles:
  
-* Firstly fork :fork_and_knife: this [repository](https://github.com/adiaux/adiaux.github.io). Make sure you star :star: the repo before forking.
+* Firstly fork :fork_and_knife: this [repository](https://github.com/skaarfacee/skaarfacee.github.io). Make sure you star :star: the repo before forking.
 * Rename the repo as `username.github.io`, where ce the username with your GitHub username.
 * Clone the forked repository.
 	```
@@ -25,8 +25,5 @@ This repo is mostly for me. I, like many of you, host my code on GitHub for reas
 
 If you like my work, please Star 🌟 the repo. If you find any suggestions/typos ping me or you can drop a PR here.
 
-<div align="center">
-    <sub><sup>© 2019 portfolYOU, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>
-</div>
 
 
