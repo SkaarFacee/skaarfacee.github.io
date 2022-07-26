@@ -1,6 +1,6 @@
 ---
 name: Book Recommender System 
-tools: [Machine Learning,skelarn, Flask]
+tools: [Machine Learning,sklearn, Flask]
 image: https://i.ibb.co/HGsBxWC/recommender-1.jpg
 description: Machine learning based book recommender system.
 ---
