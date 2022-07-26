@@ -1,6 +1,6 @@
 ---
 name: Flight Delay Predictor 
-tools: [Machine Learning,skelarn, Flask]
+tools: [Machine Learning,sklearn, Flask]
 image: https://i.ibb.co/M1VX2xc/flight.jpg
 description: Machine learning based predictor that can predict whether a flight is delayed or not. 
 ---
