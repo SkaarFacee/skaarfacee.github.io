@@ -1,7 +1,7 @@
 ---
 name: Wordle
 tools: [HTML5,Bootstrap,Js]
-image: https://image.shutterstock.com/image-vector/abstract-creative-letter-w-logo-260nw-1550379665.jpg
+image: https://images-na.ssl-images-amazon.com/images/I/51m2TDXGexL.jpg
 description: This is a game built for an assignment
 ---
 
