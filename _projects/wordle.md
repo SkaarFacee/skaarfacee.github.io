@@ -10,7 +10,7 @@ You can visit the game deployed or view the source code at
 
 
 <p class="text-center">
-{% include elements/button.html link="https://630d85b255ae8d6d9c93ffa3--sunny-kitten-1a4224.netlify.app/" text="Game" %}
+{% include elements/button.html link="https://master--sunny-kitten-1a4224.netlify.app/" text="Game" %}
 
 {% include elements/button.html link="https://github.com/SkaarFacee/wordle" text="Code" %}
 </p>
