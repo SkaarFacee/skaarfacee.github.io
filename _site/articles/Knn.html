@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en" class="h-100">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="I turn coffee into code, use tabs over spaces and never broke production.">
+
+  <title>Personal Website</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" type="text/css"/>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+
+</head>
+
+
+<body class="d-flex flex-column h-100">
+
+  <main class="flex-shrink-0 container mt-5">
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+  <a class="navbar-brand" href="/"><h5><b>Personal Website</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /projects/ ">Projects</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link  active " href=" /articles/ ">Blog</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /about/ ">About</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" https://github.com/skaarfacee/ "><i class="fab fa-1x fa-github"></i></a>
+          
+        
+      
+    </div>
+  </div>
+
+</nav>
+  <div class="col-lg-10 mx-auto mt-5 article">
+  <h1><b>K Nearest Neighbours Algorithm</b></h1>
+
+<p class="article-metadata text-muted">
+  10 September 2021 -  
+  <b>
+  
+  
+    3 mins read time
+  
+  </b>
+
+  <br>
+
+  
+    Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/articles/tags#ml-algorithms">
+      <span class="tag badge badge-pill text-primary border border-primary">Ml Algorithms</span>
+    </a>
+    
+  
+
+</p>
+
+<p>This algorithm chooses the nearest neighbour of the data point to be of the same class. This algorithm also uses a majority voting mechanim, in which the algorithm (n-KKN model) uses the ‘n’th neighbours to determine the class of the data points. This algorith can be used for both classification as well as regression problems, however it is mostly used for classification problems</p>
+
+<blockquote>
+  <p>K-NN is a non-parametric algorithm, which means it does not make any assumption on underlying data.</p>
+</blockquote>
+
+<h3 id="advantages">Advantages</h3>
+<ul>
+  <li>If the data is properly labelled</li>
+  <li>It is robust to noisy training data</li>
+  <li>It can be more effective if the training data is large</li>
+</ul>
+
+<h3 id="disadvantages">Disadvantages</h3>
+<ul>
+  <li>Determing the value of K can be time taking if we don’t know the number of classes</li>
+  <li>The computation cost is high because we use similarity functions</li>
+</ul>
+
+<h1 id="alogrithm">Alogrithm</h1>
+<ol>
+  <li>Pick a value for ‘k’</li>
+  <li>Calculate the distance for the unknown cases</li>
+  <li>Selecr the k-observations in the training data that is nearest to the unknown data points</li>
+  <li>Predict the class using the most popular response from the k-neighbours (for regression average of the popular responses is taken)</li>
+</ol>
+
+<h1 id="calculation-similarity-in-knns">Calculation Similarity in Knn’s</h1>
+<p>Usuallly in knn’s we use the euclidean distance to calculate the similarity between two datapoints however we can use other similarity functions</p>
+
+<h3 id="a-euclidean">A. Euclidean</h3>
+<ul>
+  <li>This similarity(distance) measure is not scale invariant, which means that the dataset needs to be normalized before it is used <br /></li>
+  <li>As the dimension increases this distance measure becomes less usefull. This is because of the curse of the ‘curse of dimensionality’. The popular aspects of this curse is ‘Data sparsity’ and ‘Distance concentration’</li>
+</ul>
+
+<h4 id="data-sparsity">Data Sparsity:</h4>
+<p>This aspect, where the training samples do not capture all combinations, is referred to as ‘Data sparsity’ or simply ‘sparsity’ in high dimensional data.Training a model with sparse data could lead to high-variance or overfitting condition.</p>
+
+<h4 id="distance-concentration">Distance Concentration</h4>
+<p>Distance concentration refers to the problem of all the pairwise distances between different samples/points in the space converging to the same value as the dimensionality of the data increases. The L1 norm or Manhattan distance is preferred to the L2 norm or the Euclidean distance for high dimensional data processing.</p>
+
+<h3 id="b-cosine-similarity">B. Cosine Similarity</h3>
+<ul>
+  <li>This was introduced to overcome the euclidean distance drawbacks.</li>
+  <li>The magnitude of vectors is not taken into account. This means that the difference in values is not relevant</li>
+  <li>Used paticularly in high dimensianl data, where magnitude is not majorly important</li>
+</ul>
+
+<h3 id="c-manhattan-distance">C. Manhattan Distance</h3>
+<ul>
+  <li>This refers to the distance between two vectors if they could only move right angles,there is no diagonal movement in calculating the distance</li>
+  <li>This as well works with higher dimensional data, but is somewhat less intuitive</li>
+  <li>Does not give the shortest path as well</li>
+</ul>
+
+<h3 id="d-minkowski-distance">D. Minkowski Distance</h3>
+<ul>
+  <li>This metric is used in norm vector space, which means in a space where distances can be represented as a vector that has a length and the lengths cannot be negative.</li>
+  <li>Metric has 3 requirements :
+    <li style="list-style-type: '📁'"><b>Zero vector</b>: Distance between one place and itself is zero 
+  <li style="list-style-type: '📁'"><b>Scalar factor</b>: When you multiply the distance with a scalar only the magnitude changes
+  <li style="list-style-type: '📁'"><b>Triangle Inequality</b>: Shortest distance between two points is a straight line  
+
+
+</li></li></li>
+  </li>
+</ul>
+<p>#</p>
+
+
+<footer>
+  This Article is <b>open source</b>. Noticed a typo? </br>
+  Or something unclear? Send a PR :)
+</footer>
+</div>
+  </main>
+
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    <!--by <strong>Aditya Anil</strong>-->
+  </small>
+
+  <div class="container-fluid justify-content-center">
+
+  
+
+  
+
+    
+    
+      
+
+    
+    
+      
+
+    
+    
+
+    
+    <a class="social mx-1"  href="mailto:aditya8anil@gmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.facebook.com/aditya8anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#3b5998'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-facebook fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.github.com/skaarfacee"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.instagram.com/aaaddii__10"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#405de6'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-instagram fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.linkedin.com/in/aditya-anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#007bb5'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-linkedin-in fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://open.spotify.com/user/31oblpch73x3nnnrekndxanrtqvm"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1db954'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-spotify fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.twitter.com/AdityaAnil19"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1da1f2'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-twitter fa-1x"></i>
+    </a>
+  
+  
+
+</div>
+
+</footer>
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Card Animation jQuery -->
+<script src="/assets/js/card-animation.js"></script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+</body>
+
+</html>

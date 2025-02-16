@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en" class="h-100">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="I turn coffee into code, use tabs over spaces and never broke production.">
+
+  <title>Personal Website</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" type="text/css"/>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+
+</head>
+
+
+<body class="d-flex flex-column h-100">
+
+  <main class="flex-shrink-0 container mt-5">
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+  <a class="navbar-brand" href="/"><h5><b>Personal Website</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /projects/ ">Projects</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link  active " href=" /articles/ ">Blog</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /about/ ">About</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" https://github.com/skaarfacee/ "><i class="fab fa-1x fa-github"></i></a>
+          
+        
+      
+    </div>
+  </div>
+
+</nav>
+  <div class="col-lg-10 mx-auto mt-5 article">
+  <h1><b>Training models</b></h1>
+
+<p class="article-metadata text-muted">
+  21 April 2021 -  
+  <b>
+  
+  
+    8 mins read time
+  
+  </b>
+
+  <br>
+
+  
+    Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/articles/tags#hands-on-machine-learning2">
+      <span class="tag badge badge-pill text-primary border border-primary">Hands-On Machine Learning2</span>
+    </a>
+    
+  
+
+</p>
+
+<p>Consider a basic linear regression model  there are two ways train it :</p>
+<h3 id="adirect-closed-form"><strong>A.Direct “Closed form”</strong></h3>
+<p>The equation directly computes the model parameters that best fit the model to training set (that is, the model parameters minimize the cost function over the training set )</p>
+<h3 id="biterative-optimization-approach"><strong>B.Iterative Optimization approach</strong></h3>
+<p>This is called gradient descent (GD) that gradually tweaks the model parameters to minimize the cost function over the training set which eventually converges to the same set of parameters that is obtained in the first method</p>
+
+<h1 id="linear-regression">Linear Regression</h1>
+<p>Equation of a linear regression model is :
+<img src="https://www.superheuristics.com/wp-content/uploads/2018/10/Equation-of-Linear-Regression.png" alt="enter image description here" />The most common error measure used  to evaluate such models is Root Mean Square Error (RSME). Hence we choose a model that reduces the cost function. However in practice it is easier to reduce the MSE (Mean Square Error) rather than RMSE. The MSE cost function is given by
+<img src="https://miro.medium.com/max/1198/1*BtVajQNj29LkVySEWR_4ww.png" alt="enter image description here" /></p>
+<h1 id="gradient-descent">Gradient Descent</h1>
+<p>This is a general optimization algorithm used to find solutions for a wide range of problems. The general idea of gradient descent is to gradually tweak parameters in order to minimize the cost function. An important parameter of gradient descent is the size of steps which is determined but the <em>learning rate</em> hyperparameter. If the learning rate is very small the algorithm will have to run through many iterations in order to converge to a solution. On the other hand if the learning rate is too high, the algorithm might tend to diverge from the actual minimum value
+<img src="https://www.jeremyjordan.me/content/images/2018/02/Screen-Shot-2018-02-24-at-11.47.09-AM.png" alt="enter image description here" />Not all the cost functions have a bowl like shape, they may have ridges,plateaus,etc. This leads to drawbacks of gradient descent. Sometimes the value it converges to might be the local minima and not the global minimum, which may be the actual minimum value. However, when you consider the MSE cost function, the function is convex, hence there is no local minima but just a global minima.
+While using GD ( Gradient Descent) make sure to scale the values using <code class="language-plaintext highlighter-rouge">StandardScaler</code> so  that it converges faster</p>
+<h1 id="batch-gradient-descent">Batch Gradient Descent</h1>
+<p>In Batch Gradient Descent, all the training data is taken into consideration to take a single step. We take the average of the gradients of all the training examples and then use that mean gradient to update our parameters. Batch Gradient Descent is great for convex or relatively smooth error manifolds. In this case, we move somewhat directly towards an optimum solution.</p>
+
+<h1 id="stochastic-gradient-descent">Stochastic Gradient Descent</h1>
+<p>The main problem with batch gradient descent is that it uses the whole training set to calculate the gradient at every step, making it very slow. However stochastic gradient descent just picks a random instance as the training set at every step and computes the gradient based on that descent. This makes the algorithm much faster and makes it possible to train huge datasets. Due to its stochastic nature, this algorithm is much less regular than Batch Gradient Descent. Instead of gradually decreasing until it reaches the minimum, the cost function will bounce up and down decreasing on average. As the algorithm bounces all over the place and finally settles down. So, once the algorithm stops the final parameter values are good, but are not optimum. When the cost function is very irregular with great jumps, hence it may jump out of the local minima, giving it a greater chance to find the global minima</p>
+<h1 id="mini-batch-gradient-descent">Mini-Batch Gradient Descent</h1>
+<p>This is more of a combination of both SGD (Stochastic Gradient Descent) and GD (Batch Gradient Descent). Mini GDs calculate the gradients over random sets of instances called mini-batches. The main advantage of Mini-Batch GD is that you can get a performance boost from hardware optimization of matrix operations, especially using GPU’s. The algorithm is less erratic when compared to SGD, making it also harder to escape from the local minima.</p>
+<h1 id="polynomial-regression">Polynomial Regression</h1>
+<p>If the data is more complex than a simple straight line, you can use a linear model to fit non-linear data. This is done by adding powers to each of the features as new features. This is called polynomial regression.
+<img src="https://static.javatpoint.com/tutorial/machine-learning/images/machine-learning-polynomial-regression.png" alt="enter image description here" />At times if you polynomial regression, you are more likely to fit better than a plane linear regression.</p>
+<h1 id="bias-variance-tradeoff">Bias-Variance Tradeoff</h1>
+<p>A models generalization error can be a combination of 3 different errors :</p>
+<h3 id="a-bias"><strong>A. Bias</strong></h3>
+<p>This part of the generalization error is caused due to the wrong assumptions.This involves assuming the data is linear, when it may be actually quadratic. High-bias models are most likely to underfit the data</p>
+<h3 id="b-variance"><strong>B. Variance</strong></h3>
+<p>This is due to the model’s excessive sensitivity to small changes in the training data. High degree models tend to give high variations and this ultimately leads to overfitting of the data</p>
+<h3 id="c-irreducible-error"><strong>C. Irreducible Error</strong></h3>
+<p>This is caused due to the nosiness in the data. Only way to reduce this error is to clean up the data.</p>
+
+<hr />
+
+<p>The tradeoff is between Bias and Variance. If Variance is high then the bias is small. However if the bias is high,
+then the variance is small.</p>
+
+<hr />
+<p><img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2020/08/Copy-of-Add-a-subheading5.png" alt="enter image description here" /></p>
+<h1 id="regularized-linear-model">Regularized Linear Model</h1>
+<p>A good way to reduce overfitting of data on the model is to regularize the model. This can be done by reducing the degree of freedom. For Linear model’s regularization is achieved by constraining the weights of the model</p>
+<h1 id="ridge-regression">Ridge Regression</h1>
+<p>It is a regularized version of linear regression. <img src="https://businessforecastblog.com/wp-content/uploads/2014/05/ridgeregressionOF.png" alt="Ridge regression " /> The regularization term forces the learning algorithm to not fit the data but also keeps the model’s weights as small as possible. It is important to note that the regularization should be added to cost function only while training. To evaluate the model’s performance, we would use the unregularized performance measure. The hyperparameter “lambda” controls how much you want to regularize the model. If lambda=0, we get a simple linear model. If the lambda is very large, we ultimately get almost all weights as 0, resulting in a flat line through the data’s mean.</p>
+<h1 id="lasso-regression">Lasso Regression</h1>
+<p>This is a modification of the ridge regression. This uses a L1 norm instead  of L2. The equation is given by</p>
+<p align="center">
+ <img src="https://www.statisticshowto.com/wp-content/uploads/2015/09/lasso-regression.png" />
+</p>
+
+<h1 id="elastic-net">Elastic Net</h1>
+<p>This is a combination of both lasso and ridge regression. The equation is given by :
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20200723010928/Elastic_1.png" alt="Elastic Net" />The regularization term is controlled by a term alpha. When alpha=0 we get a purely Ridge regression and when alpha=1, then it is purely Lasso regression.
+For basic regression it is always suggested to use some kind of regularization. Usually the order of regularization tried is</p>
+
+<hr />
+<p align="center">
+Ridge Regression -&gt;Elastic Net -&gt;Lasso Regression
+</p>
+<hr />
+
+<p align="center">
+ <img src="https://www.researchgate.net/profile/Frank-Emmert-Streib/publication/330380054/figure/tbl2/AS:715185664823298@1547524958338/Overview-of-regularization-or-penalty-terms-and-methods-utilizing-them.png" />
+</p>
+
+<h1 id="early-stopping">Early stopping</h1>
+<p>This is simple technique in which we stop iterating once the minimum is reached.There are three elements to using early stopping; they are:</p>
+<ul>
+  <li>Monitoring model performance.</li>
+  <li>Trigger to stop training.</li>
+  <li>The choice of model to use.
+    <h1 id="logistic-regression">Logistic Regression</h1>
+    <p>Just like a linear regression model, a logistic regression model computes the weighted sum of the input features. However instead of outputting the result directly like linear regression, It outputs the logistic of the result. The logistic used is a sigmoid function and the output is between the numbers 0 and 1. The equation of sigmoid is given by</p>
+  </li>
+</ul>
+<p align="center">
+ <img src="https://miro.medium.com/max/674/0*pvMD0iSS8Mb2zy6W.png" />
+</p>
+<p>Once the logistic model has estimated the probability it can classify an instance.</p>
+
+<h2 id="the-cost-function">The cost function</h2>
+<p>The cost function in logistic regression is given by</p>
+<p align="center">
+ <img src="http://www.holehouse.org/mlclass/06_Logistic_Regression_files/Image%20[15].png" />
+</p>
+<p>The cost function over a training set is simply the average cost over all training instances. It is expressed as an expression called log loss. Logistic regression models can be regularized using L1 and L2 penalties. For logistic regression the regularization parameter is the inverse of that of “lambda”. Higher the value,the less the model is regularized.</p>
+<h1 id="softmax-regression">Softmax Regression</h1>
+<p>Softmax Regression (synonyms: Multinomial Logistic, Maximum Entropy Classifier, or just Multi-class Logistic Regression) is a generalization of logistic regression that we can use for multi-class classification (under the assumption that the classes are mutually exclusive). In contrast, we use the (standard) Logistic Regression model in binary classification tasks. The idea is simple: when given an instance ‘x’, the softmax regression model computes a score Sk(x) for each class ‘k’. Then the softmax function is applied to find the probability of each class.</p>
+
+<p>The softmax function which computes the exponential of each score and then normalises them.</p>
+
+
+<footer>
+  This Article is <b>open source</b>. Noticed a typo? </br>
+  Or something unclear? Send a PR :)
+</footer>
+</div>
+  </main>
+
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    <!--by <strong>Aditya Anil</strong>-->
+  </small>
+
+  <div class="container-fluid justify-content-center">
+
+  
+
+  
+
+    
+    
+      
+
+    
+    
+      
+
+    
+    
+
+    
+    <a class="social mx-1"  href="mailto:aditya8anil@gmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.facebook.com/aditya8anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#3b5998'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-facebook fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.github.com/skaarfacee"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.instagram.com/aaaddii__10"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#405de6'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-instagram fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.linkedin.com/in/aditya-anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#007bb5'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-linkedin-in fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://open.spotify.com/user/31oblpch73x3nnnrekndxanrtqvm"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1db954'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-spotify fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.twitter.com/AdityaAnil19"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1da1f2'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-twitter fa-1x"></i>
+    </a>
+  
+  
+
+</div>
+
+</footer>
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Card Animation jQuery -->
+<script src="/assets/js/card-animation.js"></script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+</body>
+
+</html>

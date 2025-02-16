@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en" class="h-100">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="I turn coffee into code, use tabs over spaces and never broke production.">
+
+  <title>Personal Website</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" type="text/css"/>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+
+</head>
+
+
+<body class="d-flex flex-column h-100">
+
+  <main class="flex-shrink-0 container mt-5">
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+  <a class="navbar-brand" href="/"><h5><b>Personal Website</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /projects/ ">Projects</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link  active " href=" /articles/ ">Blog</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /about/ ">About</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" https://github.com/skaarfacee/ "><i class="fab fa-1x fa-github"></i></a>
+          
+        
+      
+    </div>
+  </div>
+
+</nav>
+  <div class="col-lg-10 mx-auto mt-5 article">
+  <h1><b>Ensemble Learning and Random Forests</b></h1>
+
+<p class="article-metadata text-muted">
+  12 May 2021 -  
+  <b>
+  
+  
+    6 mins read time
+  
+  </b>
+
+  <br>
+
+  
+    Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/articles/tags#hands-on-machine-learning2">
+      <span class="tag badge badge-pill text-primary border border-primary">Hands-On Machine Learning2</span>
+    </a>
+    
+  
+
+</p>
+
+<p>If you ask a complicated question to thousands of random people. It is said that the aggregate answer is better than the answer given by experts. This is called <em>wisdom of the crowd</em>. Similarly if you aggregate the predictions of a group of predictors, you will often get a better prediction than the best individual predictor. A group of predictors is called an <strong>ensemble</strong> and hence this technique of using many predictors is called <strong>Ensemble Learning</strong>. For instance you can train a group of decision trees classifiers and each on a different random subset of the training set. To make predictions, you need to obtain the predictions of all the individual predictors and then predict the class that gets the most votes. Such as ensemble of decision trees is called <strong>Random Forests</strong>.</p>
+
+<h1 id="voting-classifiers">Voting Classifiers</h1>
+<p>Suppose you have trained a few classifiers,each having about 80% accuracy. Let’s say you may have Logistic Regression, SVM, K-nearest Classifier, Random forests, etc. A very simple classifier is to aggregate the predictions of each classifier and predict the class that gets the most votes. It is seen that very often, such a kind of voting classifier achieves a score higher than the best classifier in the ensemble. This possible because it is based of the <em>wisdom of the crowd</em> notion. The version of the law used in machine learning states that if you build an ensemble containing 1000 classifiers that are individually correct only 51% of the time (close to random predictions). You can hope to achieve an accuracy of 75% from the ensemble. However this is only possible if the models are independent and make uncorrelated errors. This is not the case as they are trained using the same training set most of the time. This reduces the ensemble accuracy to some extent.</p>
+
+<h1 id="bagging-and-pasting">Bagging and Pasting</h1>
+<p>One way to obtain a diverse classifier is to use different algorithms. Another approach is to use the same training algorithm for every predictor but to train them on different random subsets of the training set. When the sampling is performed with replacement it is called <strong>Bagging</strong>, otherwise the sampling is performed without replacement and is called <strong>Pasting</strong>. Basically both bagging and pasting allows the training instances to be sampled several times for the same predictor. Once all the predictors are trained, an ensemble can make a prediction for a new instance by simply aggregating the predictions of all predictors.</p>
+
+<hr />
+<p>Note the aggregating function is often just a simple statistical mode for classification or a the statistical average for regression</p>
+
+<hr />
+<p>Each individual predictor has a higher bias than if it was trained individually on the original training set. However, aggregation reduces both bias and variance. One of the reasons bagging and pasting is so popular is that they scale very well. For instance, you can train predictors in parallel via different cores or servers</p>
+
+<h1 id="random-patches-and-random-subspaces">Random Patches and Random Subspaces</h1>
+<p>The bagging classifier also supports sampling features as well. This sampling is controlled by the hyperparameters <code class="language-plaintext highlighter-rouge">max_features</code> and <code class="language-plaintext highlighter-rouge">bootstrap_features</code> in <code class="language-plaintext highlighter-rouge">sklearn</code>. They are particularly useful when you are dealing with high - dimensionality inputs such as images. Sampling both training instances and features is called <strong>Random Patches Method</strong>. While sampling only the features is called <strong>Random Subspaces Method</strong>.</p>
+
+<h1 id="random-forests">Random Forests</h1>
+<p>It is an ensemble of decision trees, generally trained by the bagging method with the <code class="language-plaintext highlighter-rouge">max_samples</code> set to the training set. Instead of building a <code class="language-plaintext highlighter-rouge">BaggingClassifier</code> with <code class="language-plaintext highlighter-rouge">DecisionTreeClassifier</code> you could call the <code class="language-plaintext highlighter-rouge">RandomForestClassifier</code> that is found in <code class="language-plaintext highlighter-rouge">sklearn</code>. This is more optimized and convenient. With a few exceptions <code class="language-plaintext highlighter-rouge">RandomForestClassifier</code> has all the hyperparameters that a <code class="language-plaintext highlighter-rouge">DecisionTreeClassifier</code> and <code class="language-plaintext highlighter-rouge">BaggingClassifier</code> has. This classifier also introduces extra randomness when growing trees. So, instead of searching for a very feature to split a node, it searches for the best feature among a random subset of features. This results in a much more diverse tree, again trading high bias for a lower variance.</p>
+
+<h1 id="extra-trees">Extra Trees</h1>
+<p>While growing a tree in Random forests, at each node only a random subset of the features is considered. The question arises if it is possible to make the trees even more random by also using random thresholds for each feature, rather than searching for the best possible threshold. A forest of such extremely random trees is called an extremely Randomized Trees Ensemble. This again trades high bias for lower variance. This also makes extra trees faster than the regular random forests.</p>
+
+<hr />
+<h4 id="another-great-quality-of-random-forests-is-that-it-helps-to-measure-the-relative-importance-of-features">Another great quality of random Forests is that it helps to measure the relative importance of features</h4>
+
+<hr />
+
+<h1 id="boosting">Boosting</h1>
+<p>Boosting was originally hypothesis boosting and refers to the ensemble learning method in which several weak learners are combined to form a strong learner. The general idea of boosting is to train its predictors sequentially improving on its predecessor. There are many boosting methods such as :</p>
+<h2 id="a-adaboost">A. AdaBoost</h2>
+<p>One way for its predictor to correct its predecessor is to pay a bit more attention to the training instances that the predecessor underfitted. This results in the new predictor to focus more and more into the hard cases. This technique is called <em>AdaBoost</em>. For example, to build an AdaBoost classifier based on the first base classifier ( such as decision trees), the first base classifier is trained on the training set. The relative weight of the misclassified  training instances is then increased. A second classifier is trained using the updated weights. It makes predictions and the weights are again updated. This cycle goes on.</p>
+
+<hr />
+<h4 id="if-adaboost-is-overfitting--you-can-control-it-by-reducing-the-number-of-estimators">If AdaBoost is overfitting  you can control it by reducing the number of estimators.</h4>
+
+<hr />
+
+<p align="center">
+<img src=" https://lh4.googleusercontent.com/GLcjrWSUkjadvf0hTV_y7ATgh7l-UQQ12_UYluxQYxxWvSKoP5AJN6cvKS5s-uvO_kR3OVBlgL6Q0MATYoueKF59-eIO718Fz9KsVVcObbO54OhfIEkEYlWrn6vA2rr4qXfn2rbsIkMMnHuWEQ" />
+</p>
+
+<h2 id="b-gradient-boosting">B. Gradient Boosting</h2>
+<p>Just like AdaBoost, gradient boosting works sequentially adding predictors to an ensemble, each one correcting the predecessor. The difference is instead of tweaking the weights at every iteration like in AdaBoost, this method tries to fit a new predictor to the residual errors made by the previous predictors. A simple example can be shown using decision trees. This is called <em>gradient boosting decision trees</em>. The learning rate hyperparameter scales the contribution by each tree. If you set the learning rate below 0.1 it needs more trees in the ensemble to fit the training set, however this would generalize better. This method is called <strong>shrinkage</strong>.
+       Sometimes increasing the number of estimators and reducing the learning rate can also lead to the overfitting of data. This can be controlled by early stopping using the <code class="language-plaintext highlighter-rouge">stage_predict</code> method that returns an iterator of the predictions made by the ensemble at each stage of training. You can also use early stopping by keeping the hyperparameter <code class="language-plaintext highlighter-rouge">warm_state=True</code>. This keeps the tree as it is with incremental training.
+The GRBT class in <code class="language-plaintext highlighter-rouge">sklearn</code> also has a hyperparameter <code class="language-plaintext highlighter-rouge">subspace</code> which specifies the fraction of the training instances that could be used to train the tree, This however trades higher bias for a lower variance.</p>
+
+<h1 id="stacking">Stacking</h1>
+<p>This is based on the simple idea that instead of using a function to aggregate the predictors in the ensemble , why don’t we train a model to do this. The final model aggregates the predictors in a so-called blender.</p>
+<p align="center">
+<img src=" https://miro.medium.com/max/809/0*e-na5r7mF8lVAfPK.png" />
+</p>
+
+
+
+<footer>
+  This Article is <b>open source</b>. Noticed a typo? </br>
+  Or something unclear? Send a PR :)
+</footer>
+</div>
+  </main>
+
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    <!--by <strong>Aditya Anil</strong>-->
+  </small>
+
+  <div class="container-fluid justify-content-center">
+
+  
+
+  
+
+    
+    
+      
+
+    
+    
+      
+
+    
+    
+
+    
+    <a class="social mx-1"  href="mailto:aditya8anil@gmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.facebook.com/aditya8anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#3b5998'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-facebook fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.github.com/skaarfacee"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.instagram.com/aaaddii__10"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#405de6'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-instagram fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.linkedin.com/in/aditya-anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#007bb5'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-linkedin-in fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://open.spotify.com/user/31oblpch73x3nnnrekndxanrtqvm"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1db954'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-spotify fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.twitter.com/AdityaAnil19"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1da1f2'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-twitter fa-1x"></i>
+    </a>
+  
+  
+
+</div>
+
+</footer>
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Card Animation jQuery -->
+<script src="/assets/js/card-animation.js"></script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+</body>
+
+</html>

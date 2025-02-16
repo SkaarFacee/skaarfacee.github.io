@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en" class="h-100">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="I turn coffee into code, use tabs over spaces and never broke production.">
+
+  <title>Personal Website</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" type="text/css"/>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+
+</head>
+
+
+<body class="d-flex flex-column h-100">
+
+  <main class="flex-shrink-0 container mt-5">
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+  <a class="navbar-brand" href="/"><h5><b>Personal Website</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /projects/ ">Projects</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link  active " href=" /articles/ ">Blog</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /about/ ">About</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" https://github.com/skaarfacee/ "><i class="fab fa-1x fa-github"></i></a>
+          
+        
+      
+    </div>
+  </div>
+
+</nav>
+  <div class="col-lg-10 mx-auto mt-5 article">
+  <h1><b>Dimensionality Reduction</b></h1>
+
+<p class="article-metadata text-muted">
+  19 May 2021 -  
+  <b>
+  
+  
+    5 mins read time
+  
+  </b>
+
+  <br>
+
+  
+    Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/articles/tags#hands-on-machine-learning2">
+      <span class="tag badge badge-pill text-primary border border-primary">Hands-On Machine Learning2</span>
+    </a>
+    
+  
+
+</p>
+
+<p>Many machine learning problems have a lot of features. Fortunately is real world problems we have the ability to remove features. For instance in the MNIST dataset, which has a number of handwritten digits, the pixels in the border are almost white for every one of the images and this can be removed. At the same time two consecutive pixels may be highly correlated and joining them together (by their mean value) would not cause much loss in information.</p>
+<h1 id="the-curse-of-dimensionality">The curse of Dimensionality</h1>
+<p>We as living things love are so used to living in 3D that our imagination just can not imagine high dimensional spaces, including 4D</p>
+<h1 id="the-main-approaches-of-dimensionality-reduction">The main approaches of Dimensionality Reduction</h1>
+<h2 id="a-projection">A. Projection</h2>
+<p>In most real world problems, training instances are not spread out uniformly across all dimensions. Many features are constant while some may be highly correlated.This, hence makes all the training instances lie in a smaller low dimensional subspace. Take a 3D instance and if you project its depth to a 2D surface you have reduced its dimension. However this can not be done in every case. For example take a look at the famous swiss roll dimensionality reduction as shown below. Here you can see after dimensionality reduction there seems to be a loss of a lot of information that could have been used to distinguish the individual instances.</p>
+<p align="center">
+<img src=" https://www.researchgate.net/profile/Diego-Peluffo/publication/286926602/figure/fig1/AS:306935011266560@1450190417862/Dimensionality-reduction-effect-over-a-Swiss-roll-manifold-Resultant-embedded-data-is-an.png" />
+</p>
+
+<h2 id="b-manifold-learning">B. Manifold Learning</h2>
+<p>The swiss roll problems as we saw above is an example of 2-D manifold. In simple words, a 2D manifold is a 2D shape that can be twisted,stretched,etc into a higher dimensional space. This means a d-manifold is part of a n-dimensional space (where d&lt;n). Many dimensionality reduction algorithms work on modeling the manifold on which the training instances lie. This is called manifold learning and relies on the <em>manifold assumption</em> that states that most real world problems of high dimensional datasets lie close to a lower dimension manifold. This assumption is accompanied by another assumption that assumes the task at hand (classification or regression) will be simpler if expressed in a lower dimension.</p>
+<p align="center">
+<img src="https://ars.els-cdn.com/content/image/1-s2.0-S0957417419305706-gr1.jpg" />
+</p>
+
+<h1 id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h1>
+<p>Principal Component Analysis (PCA) is by far the most popular dimensionality reduction algorithm.</p>
+<h2 id="a-preserving-the-variance">A. Preserving the Variance</h2>
+<p>Before you project the training set into a lower level hyperplane, you should be able to pick the right hyperplane. There can exist many different hyperplanes or axes, but you must choose the one that preserves the most variance. It is logical to pick the hyperplane that has the highest variance as it loses the least amount of information.</p>
+<h2 id="b--principal-components">B.  Principal Components</h2>
+<p>PCA identifies the axis that accounts for the largest amount of variance in the training set, If the data was high dimensional PCA would find the axes that are orthogonal to each 1st,2nd,…,nth axes.</p>
+
+<hr />
+<h4 id="unit-vector-that-defines-that-the-ith-axis-is-called-the-ith-principal-component">Unit vector that defines that the ‘i’th axis is called the ‘i’th principal component</h4>
+
+<hr />
+<p>To find the principal components there is a factorization method called SVD. This decomposes a matrix ‘X’ into a multiplication of 3 smaller matrices, out of which one contains the principal components</p>
+<p align="center">
+<img src="https://images1.programmersought.com/141/6d/6d62d55f48f3f434111b939980354605.png" />
+</p>
+
+<h3 id="in-the-given-equation-for-svd-the-matrix-v-contains-the-principal-components">In the given equation for SVD the matrix ‘V’ contains the principal components</h3>
+
+<h2 id="projecting-down-to-d-dimensions">Projecting down to D-dimensions</h2>
+<p>Once you have identified all the principal components, you can reduce the dimensionality of the dataset down to ‘d’ dimensions by projecting it onto a hyperplane defined by the first ‘d’ principal component. To project the training set onto a hyperplane all you have to do is multiply the original matrix with a matrix containing the first ‘d’ principal components.</p>
+<p align="center">
+<img src="https://image.slidesharecdn.com/8-180514114339/95/dimensionality-reduction-machine-learning-cloudxlab-57-638.jpg?cb=1527755683" />
+</p>
+
+<h1 id="explained-variance-ratio">Explained Variance Ratio</h1>
+<p>The explained variance ratio is accessed by the variable <code class="language-plaintext highlighter-rouge">explained_variance_ratio_</code> in <code class="language-plaintext highlighter-rouge">sklearn</code>. It indicates proportions of the dataset’s variances that lie along the axis of each principal component.</p>
+<h1 id="choosing-the-right-dimensions">Choosing the right dimensions</h1>
+<p>Instead of choosing an arbitrary number of dimensions to reduce down to. It is better to choose the number of dimensions that add up to a sufficiently higher large portion of the variance. However if you want to reduce the dimensions for data visualizations it is best to reduce the data into 2 or 3 dimensions.</p>
+<h1 id="pca-for-compression">PCA for compression</h1>
+<p>After dimensionality reduction the datasets have a much smaller size. It is also possible to decompress the reduced dataset. This won’t give you the original data but would be highly close to the original data in terms of information. The MSE between the original data and the reconstructed data is called the reconstruction error.</p>
+<h1 id="randomized-pca">Randomized PCA</h1>
+<p>You can set the <code class="language-plaintext highlighter-rouge">svd_solver</code> hyperparameter to  <code class="language-plaintext highlighter-rouge">'randomized’</code> so that PCA quickly estimates the first ‘d’ principal components. By default the <code class="language-plaintext highlighter-rouge">svd_solver</code> hyperparameter is set to <code class="language-plaintext highlighter-rouge">'auto'</code>.  This means that it uses randomized PCA only when the value of <code class="language-plaintext highlighter-rouge">m</code> or <code class="language-plaintext highlighter-rouge">n</code> is greater than 500.</p>
+<h1 id="incremental-pca">Incremental PCA</h1>
+<p>A problem with PCA is that it requires the whole training set to fit in the memory in order for the algorithm to work. However Incremental PCA (IPCA) algorithms have been introduced that divides the dataset into mini-batches to work with.</p>
+<h1 id="kernel-pca">Kernel PCA</h1>
+<p>The Kernel trick is basically a mathematical technique in which instances are mapped into a high dimensional space (feature space) enabling non-linear regression and classification with SVM</p>
+<h2 id="selecting-a-kernel-and-tuning-the-hyperparameters">Selecting a kernel and tuning the hyperparameters</h2>
+<p>Kernel PCA (kPCA) is an unsupervised learning algorithm and hence there is no obvious performance measure. However dimensionality reduction is often a preparation step for supervised learning tasks. Hence you can use <code class="language-plaintext highlighter-rouge">grid search</code>  to select the best hyperparameters and kernels</p>
+<h1 id="locally-linear-embedding">Locally Linear Embedding</h1>
+<p>This is a very powerful non-linear dimensionality reduction technique. It is a manifold learning technique that does not rely on projections. LLE works by first measuring how many instances linearly related to its closest neighbor and then looks for a lower dimensional representation of the training set where these relationships are preserved the most</p>
+
+
+
+<footer>
+  This Article is <b>open source</b>. Noticed a typo? </br>
+  Or something unclear? Send a PR :)
+</footer>
+</div>
+  </main>
+
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    <!--by <strong>Aditya Anil</strong>-->
+  </small>
+
+  <div class="container-fluid justify-content-center">
+
+  
+
+  
+
+    
+    
+      
+
+    
+    
+      
+
+    
+    
+
+    
+    <a class="social mx-1"  href="mailto:aditya8anil@gmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.facebook.com/aditya8anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#3b5998'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-facebook fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.github.com/skaarfacee"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.instagram.com/aaaddii__10"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#405de6'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-instagram fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.linkedin.com/in/aditya-anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#007bb5'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-linkedin-in fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://open.spotify.com/user/31oblpch73x3nnnrekndxanrtqvm"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1db954'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-spotify fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.twitter.com/AdityaAnil19"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1da1f2'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-twitter fa-1x"></i>
+    </a>
+  
+  
+
+</div>
+
+</footer>
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Card Animation jQuery -->
+<script src="/assets/js/card-animation.js"></script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+</body>
+
+</html>

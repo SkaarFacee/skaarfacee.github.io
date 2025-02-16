@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en" class="h-100">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="I turn coffee into code, use tabs over spaces and never broke production.">
+
+  <title>Personal Website</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" type="text/css"/>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+
+</head>
+
+
+<body class="d-flex flex-column h-100">
+
+  <main class="flex-shrink-0 container mt-5">
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+  <a class="navbar-brand" href="/"><h5><b>Personal Website</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /projects/ ">Projects</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link  active " href=" /articles/ ">Blog</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /about/ ">About</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" https://github.com/skaarfacee/ "><i class="fab fa-1x fa-github"></i></a>
+          
+        
+      
+    </div>
+  </div>
+
+</nav>
+  <div class="col-lg-10 mx-auto mt-5 article">
+  <h1><b>Intro to neural Networks with Keras</b></h1>
+
+<p class="article-metadata text-muted">
+  03 July 2021 -  
+  <b>
+  
+  
+    4 mins read time
+  
+  </b>
+
+  <br>
+
+  
+    Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/articles/tags#hands-on-machine-learning2">
+      <span class="tag badge badge-pill text-primary border border-primary">Hands-On Machine Learning2</span>
+    </a>
+    
+  
+
+</p>
+
+<h1 id="the-perceptron">The perceptron</h1>
+
+<p>The perceptron is one of the simplest ANN architectures. It is based on an artificial neuron called threshold logic unit (TLU). The inputs are numbers and each input connection is associated with an weight . The TLU calculates the weighted sum of the inputs and then applies a step function to that sum and then outputs the result
+<img src="https://akashsethi24.files.wordpress.com/2017/09/perceptron.png" alt="enter image description here" />
+The most common step function used in perceptrons is called Heaviside step function.</p>
+
+<p>A single TLU can be used for simple linear binary classification, it computes the linear combination of the inputs and if the result exceeds the threshold, it gives a positive output. For example, you could use a single TLU to classify iris flowers based on the petal length and width.Training a TLU in this case means finding the right values for w0 ,w1 , and w2.</p>
+
+<p>A perceptron is basically a single layer of TLUs, with each TLU connected to all the inputs. When all the neurons in a layer are connected to every neuron in the previous layer, it is called a <em>fully connected layer</em> or <em>dense layer</em>.</p>
+
+<p>The decision output boundary is linear, hence just like logistic regression, perceptrons are unable to learn complex patterns. However if the training instances are linearly separable then the algorithm will converge to a solution. This is called <strong>Perceptron Convergence theorem</strong></p>
+
+<h4 id="scikit-provides-a-perceptron-class-that-implements-a-single-tlu-network">Scikit provides a Perceptron class that implements a single TLU network</h4>
+
+<p>Perceptrons learning algorithm strongly resembles that of Stochastic Gradient Descent.</p>
+
+<hr />
+<h3 id="note">NOTE:</h3>
+<h4 align="center">
+Perceptrons do not use probabilities like logistic regression does to make predictionsl, instead it makes predictions based on a hard threshold value. This may be a key while choosing whether to use Perceptron or Logistic regression
+</h4>
+<hr />
+
+<p>Perceptrons have a number of weaknesses, the most common being its inability to solve trivial problems, which is true with any linear classification model as well. With time, it was found out that some of the limitations of perceptrons can be overcome by stacking multiple perceptrons. The resulting ANN is called <strong>Multi-Layer Perceptron (MLP)</strong></p>
+
+<h1 id="multi-layer-perceptron-and-backpropagation">Multi-Layer Perceptron and Backpropagation</h1>
+
+<p>An MLP is composed of one (pass) input layer, one or more layers of TLUs, called hidden layers, and one final layer of TLUs called the output layer. The layers close to the input layer are usually called the lower layers, and the ones close to the outputs are usually called the upper layers. Every layer except the output layer includes a bias neuron and is fully connected to the next layer.</p>
+
+<p><img src="data:image/png;base64,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" alt="enter image description here" />
+When an ANN contains a deep stack of hidden layers it is called deep neural network (DNN).</p>
+
+<p>Backpropagation, in short is basically gradient descent. In just two passes ( forward and backward ) the algorithm is able to calculate the gradient of the network with regards to every single parameter.</p>
+
+<h2 id="the-algorithm-in-more-detail-is">The algorithm in more detail is:</h2>
+
+<ul>
+  <li>
+    <p>It handles one mini batch at a time and it goes through the full training set multiple times. Each pass is called an epoch.</p>
+  </li>
+  <li>
+    <p>Each mini batch is passed into the network’s input layer. This is the step where forward pass takes place. It is important to note that all intermediate results are preserved since they are needed for backpropagation.</p>
+  </li>
+  <li>
+    <p>The algorithm then measures the output error.</p>
+  </li>
+  <li>
+    <p>It then computes how much each output connection contributed to the error. This is done using the chain rule.</p>
+  </li>
+  <li>
+    <p>The algorithm then measures how much of each error contributions came from each connection in the layer below, again using the chain rule. This goes on until the algorithm reaches the input layer.</p>
+  </li>
+  <li>
+    <p>Finally the algorithm performs a gradient descent step to tweak all the connection weights in the network using the error gradients it computed.</p>
+  </li>
+</ul>
+
+<h2 id="activation-functions-for-backpropagation">Activation functions for backpropagation</h2>
+
+<ol>
+  <li>
+    <h3 id="the-logistic-function">The logistic function</h3>
+    <p>This is a continuous and differentiable function, shaped as a S, with a range of 0 to 1</p>
+  </li>
+  <li>
+    <h3 id="the-hyperbolic-tangent-function">The hyperbolic tangent function</h3>
+    <p>This is just like the logistic function, that is, S shaped curve. However the range is from -1 to 1. This makes each layers input centered around 0 at the beginning of the training, This also helps in converging sooner</p>
+  </li>
+  <li>
+    <h3 id="the-rectified-linear-unit-function">The rectified linear unit function</h3>
+    <p>This is also continuous but not differentiable. In practice it works very well and has the advantage of being fast to compute</p>
+  </li>
+</ol>
+
+
+<footer>
+  This Article is <b>open source</b>. Noticed a typo? </br>
+  Or something unclear? Send a PR :)
+</footer>
+</div>
+  </main>
+
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    <!--by <strong>Aditya Anil</strong>-->
+  </small>
+
+  <div class="container-fluid justify-content-center">
+
+  
+
+  
+
+    
+    
+      
+
+    
+    
+      
+
+    
+    
+
+    
+    <a class="social mx-1"  href="mailto:aditya8anil@gmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.facebook.com/aditya8anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#3b5998'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-facebook fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.github.com/skaarfacee"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.instagram.com/aaaddii__10"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#405de6'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-instagram fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.linkedin.com/in/aditya-anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#007bb5'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-linkedin-in fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://open.spotify.com/user/31oblpch73x3nnnrekndxanrtqvm"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1db954'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-spotify fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.twitter.com/AdityaAnil19"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1da1f2'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-twitter fa-1x"></i>
+    </a>
+  
+  
+
+</div>
+
+</footer>
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Card Animation jQuery -->
+<script src="/assets/js/card-animation.js"></script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+</body>
+
+</html>

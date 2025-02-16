@@ -1,0 +1,131 @@
+[
+  
+    {
+      "title"    : "Pruning and Distilling Large Language Models - A Path to Efficient AI",
+      "category" : "",
+      "tags"     : "Blogs",
+      "url"      : "/articles/Pruning",
+      "date"     : "2025-02-15 00:00:00 +1100"
+    } ,
+  
+    {
+      "title"    : "LoRA in a nutshell",
+      "category" : "",
+      "tags"     : "Cool Topics",
+      "url"      : "/articles/LoRA",
+      "date"     : "2024-05-19 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "K Nearest Neighbours Algorithm",
+      "category" : "",
+      "tags"     : "Ml Algorithms",
+      "url"      : "/articles/Knn",
+      "date"     : "2021-09-10 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "Intro to neural Networks with Keras",
+      "category" : "",
+      "tags"     : "Hands-On Machine Learning2",
+      "url"      : "/articles/IntroToDL",
+      "date"     : "2021-07-03 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "Unsupervised Learning Algorithms",
+      "category" : "",
+      "tags"     : "Hands-On Machine Learning2",
+      "url"      : "/articles/Ch9",
+      "date"     : "2021-05-26 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "Dimensionality Reduction",
+      "category" : "",
+      "tags"     : "Hands-On Machine Learning2",
+      "url"      : "/articles/Ch8",
+      "date"     : "2021-05-19 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "Ensemble Learning and Random Forests",
+      "category" : "",
+      "tags"     : "Hands-On Machine Learning2",
+      "url"      : "/articles/Ch7",
+      "date"     : "2021-05-12 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "Decision Trees",
+      "category" : "",
+      "tags"     : "Hands-On Machine Learning2",
+      "url"      : "/articles/Ch6",
+      "date"     : "2021-05-05 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "Support Vector Machines",
+      "category" : "",
+      "tags"     : "Hands-On Machine Learning2",
+      "url"      : "/articles/Ch5",
+      "date"     : "2021-04-28 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "Training models",
+      "category" : "",
+      "tags"     : "Hands-On Machine Learning2",
+      "url"      : "/articles/Ch4",
+      "date"     : "2021-04-21 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "Classification Analysis",
+      "category" : "",
+      "tags"     : "Hands-On Machine Learning2",
+      "url"      : "/articles/Ch3",
+      "date"     : "2021-04-14 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "An End to End Machine learning",
+      "category" : "",
+      "tags"     : "Hands-On Machine Learning2",
+      "url"      : "/articles/Ch2",
+      "date"     : "2021-04-04 00:00:00 +1100"
+    } ,
+  
+    {
+      "title"    : "Introduction to the Machine Learning",
+      "category" : "",
+      "tags"     : "Hands-On Machine Learning2",
+      "url"      : "/articles/Ch1",
+      "date"     : "2021-03-28 00:00:00 +1100"
+    } ,
+  
+    {
+      "title"    : "Hactoberfest",
+      "category" : "",
+      "tags"     : "amFOSS, hacktoberfest",
+      "url"      : "/articles/hactoberfest",
+      "date"     : "2019-10-30 00:00:00 +1100"
+    } ,
+  
+    {
+      "title"    : "Lab sessions",
+      "category" : "",
+      "tags"     : "amFOSS, coding life",
+      "url"      : "/articles/lab-session",
+      "date"     : "2019-08-10 00:00:00 +1000"
+    } ,
+  
+    {
+      "title"    : "First steps to amFOSS",
+      "category" : "",
+      "tags"     : "amFOSS, coding",
+      "url"      : "/articles/amFOSS-tasks",
+      "date"     : "2019-07-09 00:00:00 +1000"
+    } 
+  
+]

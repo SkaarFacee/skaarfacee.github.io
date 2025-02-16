@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en" class="h-100">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="I turn coffee into code, use tabs over spaces and never broke production.">
+
+  <title>Personal Website</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" type="text/css"/>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+
+</head>
+
+
+<body class="d-flex flex-column h-100">
+
+  <main class="flex-shrink-0 container mt-5">
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+  <a class="navbar-brand" href="/"><h5><b>Personal Website</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /projects/ ">Projects</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link  active " href=" /articles/ ">Blog</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /about/ ">About</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" https://github.com/skaarfacee/ "><i class="fab fa-1x fa-github"></i></a>
+          
+        
+      
+    </div>
+  </div>
+
+</nav>
+  <div class="col-lg-10 mx-auto mt-5 article">
+  <h1><b>An End to End Machine learning</b></h1>
+
+<p class="article-metadata text-muted">
+  04 April 2021 -  
+  <b>
+  
+  
+    5 mins read time
+  
+  </b>
+
+  <br>
+
+  
+    Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/articles/tags#hands-on-machine-learning2">
+      <span class="tag badge badge-pill text-primary border border-primary">Hands-On Machine Learning2</span>
+    </a>
+    
+  
+
+</p>
+
+<p>The main steps one has to go through while making a machine learning project is :</p>
+
+<blockquote>
+  <ol>
+    <li>Look at the big picture</li>
+    <li>Get the data</li>
+    <li>Discover and visualize the data</li>
+    <li>Prepare the data for the ML algorithm</li>
+    <li>Select a model and train it</li>
+    <li>Fine tune the model</li>
+    <li>Present the solution</li>
+    <li>Launch monitor maintain the system</li>
+  </ol>
+</blockquote>
+
+<h1 id="frame-the-problem">Frame the problem</h1>
+<p>The end goal is probably not to build a model. You should be clear with what the project is supposed to achieve. Understand how the model is supposed to be used and make sure you know the benefits from the model. This is important as this will determine what algorithms that would be used in the project. Generally the output of the model made is fed into another ML system along with other signals.</p>
+
+<hr />
+<h3 id="signals-is-defined-as-a-piece-of-information-fed-into-an-ml-system">Signals is defined as a piece of information fed into an ML system</h3>
+
+<hr />
+<h2 id="pipelines">Pipelines</h2>
+<p>A sequence of data processing components is called pipelines. They are very common in ML systems as large amounts of data need to be manipulated. These components typically run asynchronously each component pulls in large amounts of data, processes it and stores the result. Another component in the pipeline then uses this data. This division makes it possible to assign teams to specific components. More importantly, if a component breaks down the other components still work. However, this is also a drawback as without proper monitoring the broken system can go unnoticed.</p>
+
+<h1 id="taking-a-look-at-the-data">Taking a look at the data</h1>
+<p>-&gt; Pandas Hassan describes a function that helps us find the main standard deviation and percentile of the data. It is important to note that while using this function null values are ignored.<br />
+-&gt; When you split the data into a training set and test set you should make sure you never see the test set until the whole process is over. <br />
+-&gt; Stratified sampling is a function that basically shows that the classes in the training said the present and active population. For instance, if the data contains 50 percent boys then the stratified training set of thousand samples will have 500 boys in it. <br /></p>
+
+<h1 id="scikit-learn-design">Scikit-Learn Design</h1>
+<h2 id="estimators">Estimators</h2>
+<p>Any object that can estimate parameters based on the data set is called estimators. The estimation itself is performed by a <code class="language-plaintext highlighter-rouge">fit()</code> method. It uses only a dataset ( or two if supervised) as a parameter. Any other parameter needed to guide the estimation process is considered as a hyperparameter and it must be set as an instance variable.</p>
+<h2 id="transformers">Transformers</h2>
+<p>Some estimators can also transform a dataset; these are called transformers. The transformation is done using the <code class="language-plaintext highlighter-rouge">transform</code> method using the dataset as a parameter. All transformers also have a convenience method called <code class="language-plaintext highlighter-rouge">fit_transform</code> that is equivalent to <code class="language-plaintext highlighter-rouge">fit</code> and then <code class="language-plaintext highlighter-rouge">transform</code></p>
+<h2 id="predictors">Predictors</h2>
+<p>Some estimators are also capable of making predictions  based on a dataset. These are called predictors.  Predictors have a <code class="language-plaintext highlighter-rouge">predict()</code> method that takes a data set of new instances and returns the corresponding predictions. It also has a <code class="language-plaintext highlighter-rouge">score()</code> method that measures the quality of predictions of the given test set.</p>
+<h2 id="inspection">Inspection</h2>
+<p>It is also possible to have a deeper look into the estimate as the hyperparameters are directly  accessible via public instance variables.</p>
+<h2 id="non-proliferation-of-classes">Non Proliferation of classes</h2>
+<p>All  the data sets are represented using numpy arrays or Scipy matrices. Whereas hyperparameters are just python strings or numbers</p>
+<h2 id="composition">Composition</h2>
+<p>Existing blocks are used as much as possible. For instance, pipeline estimators form a sequence of transformers followed by a final estimator.</p>
+<h2 id="sensible-defaults">Sensible defaults</h2>
+<p>The default values for most parameters are sensible values. This makes it easy to create a baseline working system.</p>
+
+<h1 id="feature-selection">Feature selection</h1>
+<p>There are two main types</p>
+<ul>
+  <li>min-max used for normalisation</li>
+  <li>standardisation</li>
+</ul>
+
+<p><strong><em>Keep in mind standardisation is less affected by outliers</em></strong></p>
+<h2 id="standardizing-using-scikit-learn-function-name-standardscaler"><strong><em>standardizing</em></strong> using scikit-learn (function name: <code class="language-plaintext highlighter-rouge">StandardScaler</code>)</h2>
+<p>Variables that are measured at different scales do not contribute equally to the model fitting &amp; model learned function and might end up creating a bias. Thus, to deal with this potential problem, feature-wise standardized (<code class="language-plaintext highlighter-rouge">μ=0</code>and <code class="language-plaintext highlighter-rouge">σ=1</code>) is usually used prior to model fitting.</p>
+<h2 id="min-max-scaling-using-scikit-learn-function-name-minmaxscaler"><strong><em>Min-Max Scaling</em></strong> using scikit-learn (function name: <code class="language-plaintext highlighter-rouge">MinMaxScaler</code>)</h2>
+<p>Another way to normalize  the input features/variables (apart from the <em>standardization</em> that scales the features so that they have <code class="language-plaintext highlighter-rouge">μ=0</code>and <code class="language-plaintext highlighter-rouge">σ=1</code>) is the Min-Max scaler. By doing so, all features will be transformed into the range  [0,1] meaning that the minimum and maximum value of a feature/variable is going to be 0 and 1, respectively.</p>
+<h1 id="fine-tune-the-model">Fine tune the model</h1>
+<h2 id="a-grid-search-cv">A. Grid search CV</h2>
+<p>Grid search is the process of performing hyperparameter tuning in order to determine the optimal values for a given model. The performance of a model significantly depends on the value of hyperparameters. Note that there is no way to know in advance the best values for hyperparameters so ideally, we need to try all possible values to know the optimal values. Doing this manually could take a considerable amount of time and resources and thus we use <code class="language-plaintext highlighter-rouge">GridSearchCV</code> to automate the tuning of hyperparameters.</p>
+<h2 id="b-randomised-search">B. Randomised Search</h2>
+<p>This is used when the hyperparameter search base is large.  This, instead of  trying out all combinations, it evaluates the number of random combinations by selecting a random value for each hyperparameter during each iteration. This approach has  2 benefits:</p>
+
+<ul>
+  <li>If you run this for a thousand iterations it will explore a thousand different values.</li>
+  <li>You can control the computing budget by simply setting the number of iterations.</li>
+</ul>
+
+<h2 id="c-ensemble-methods">C. Ensemble methods</h2>
+<p>Another way to fine tune is by combining models that work the best.</p>
+
+
+<footer>
+  This Article is <b>open source</b>. Noticed a typo? </br>
+  Or something unclear? Send a PR :)
+</footer>
+</div>
+  </main>
+
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    <!--by <strong>Aditya Anil</strong>-->
+  </small>
+
+  <div class="container-fluid justify-content-center">
+
+  
+
+  
+
+    
+    
+      
+
+    
+    
+      
+
+    
+    
+
+    
+    <a class="social mx-1"  href="mailto:aditya8anil@gmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.facebook.com/aditya8anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#3b5998'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-facebook fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.github.com/skaarfacee"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.instagram.com/aaaddii__10"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#405de6'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-instagram fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.linkedin.com/in/aditya-anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#007bb5'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-linkedin-in fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://open.spotify.com/user/31oblpch73x3nnnrekndxanrtqvm"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1db954'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-spotify fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.twitter.com/AdityaAnil19"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1da1f2'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-twitter fa-1x"></i>
+    </a>
+  
+  
+
+</div>
+
+</footer>
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Card Animation jQuery -->
+<script src="/assets/js/card-animation.js"></script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+</body>
+
+</html>

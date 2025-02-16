@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en" class="h-100">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="I turn coffee into code, use tabs over spaces and never broke production.">
+
+  <title>Personal Website</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" type="text/css"/>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+
+</head>
+
+
+<body class="d-flex flex-column h-100">
+
+  <main class="flex-shrink-0 container mt-5">
+  <nav class="navbar navbar-expand-lg navbar-light">
+
+  <a class="navbar-brand" href="/"><h5><b>Personal Website</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /projects/ ">Projects</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link  active " href=" /articles/ ">Blog</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" /about/ ">About</a>
+          
+        
+      
+        
+          
+            <a class="nav-item nav-link " href=" https://github.com/skaarfacee/ "><i class="fab fa-1x fa-github"></i></a>
+          
+        
+      
+    </div>
+  </div>
+
+</nav>
+  <div class="col-lg-10 mx-auto mt-5 article">
+  <h1><b>LoRA in a nutshell</b></h1>
+
+<p class="article-metadata text-muted">
+  19 May 2024 -  
+  <b>
+  
+  
+    8 mins read time
+  
+  </b>
+
+  <br>
+
+  
+    Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/articles/tags#cool-topics">
+      <span class="tag badge badge-pill text-primary border border-primary">Cool Topics</span>
+    </a>
+    
+  
+
+</p>
+
+<p>Large language models, like GPT-4, consist of billions of parameters, making them quite large and complex. This poses challenges for individuals and organizations who want to fine-tune these models to suit specific needs. The primary issues are the significant time required for training and the extensive GPU memory needed to handle such large models. Fortunately, a method known as LoRA (Low-Rank Adaptation) offers a solution for more efficient fine-tuning by reducing the number of parameters that need to be adjusted.</p>
+
+<h1 id="precision-in-model-storage">Precision in Model Storage</h1>
+
+<p>In most cases, the weights and activations within these models are stored in a 32-bit floating-point (float32) format. To estimate the size of a model, you can apply the following formula:</p>
+
+<blockquote>
+  <p>Model Size = Number of Parameters × Size of Each Parameter (in bytes)</p>
+</blockquote>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*AdSkRfxt6A8CAAfCtwAUJQ.png" alt="Formula image" />
+This formula helps in understanding the memory requirements for storing and processing large language models, aiding in better planning and resource allocation for fine-tuning tasks.</p>
+
+<p>The concept of reducing model size began to focus on the precision of data types. We found that using half precision, specifically float16, can maintain performance while reducing size. Another method is hybrid precision, where different parts of the neural network use different levels of precision.</p>
+
+<p><strong><em>FLOPS, or floating point operations per second, is a common measure of hardware speed.</em></strong></p>
+
+<p>To make this concept more intuitive, think of model precision like the resolution of a picture. Using lower resolution (half precision) can save space without significantly affecting the overall quality. Similarly, hybrid precision is like using higher resolution for important parts of the picture and lower resolution for less critical parts. This approach optimizes both performance and efficiency, ensuring that the model runs quickly without consuming unnecessary resources.</p>
+
+<h1 id="fine-tuning-techniques">Fine-Tuning Techniques</h1>
+<p>Besides increasing computational speed by lowering precision or applying quantization, there has been research in Parameter Efficient Fine-Tuning techniques (PEFT). These methods allow fine-tuning large language models (LLMs) using fewer weights than the total number of weights. A few of these methods are:</p>
+<ul>
+  <li><strong>Transfer Learning:</strong><br />
+The idea behind this is to freeze all weights and add a task-specific fine-tuning head. The downside is that we only get access to the output embeddings of the model and can’t learn based on its internal understanding and representation.</li>
+  <li><strong>Adaptive Layers:</strong><br />
+This approach involves adding new layers between the layers of a large model and then fine-tuning those. While generally effective, this method increases latency during inference and typically results in lower computational efficiency.</li>
+  <li><strong>Prefix Tuning:</strong><br />
+This is a lightweight alternative to fine-tuning, where we optimize the input vector for language models. By prepending specific input vectors to the model, we add context to steer the LLM. However, this method allows control of the model to a limited extent, which may not be sufficient in many cases.</li>
+  <li><strong>LoRA (Low-Rank Adaptation):</strong><br />
+This technique performs a rank decomposition on the updated weight matrices, making it a more efficient way to fine-tune models.</li>
+</ul>
+
+<h1 id="making-peft-more-intuitive">Making PEFT More Intuitive</h1>
+<p>Understanding the need for Parameter Efficient Fine-Tuning (PEFT) techniques is crucial in the context of working with large language models. Traditional fine-tuning involves adjusting all model weights, which can be computationally expensive and time-consuming, especially with very large models. PEFT techniques aim to reduce this burden by focusing on modifying a smaller subset of parameters or by using additional, lighter components that integrate with the existing model structure.</p>
+
+<p>For instance, consider a scenario where a company wants to tailor a general-purpose language model for their specific customer service needs. Using PEFT, they can fine-tune the model efficiently without requiring extensive computational resources. Transfer Learning would allow them to add a task-specific head to handle customer queries, while Adaptive Layers could enhance the model’s understanding without overhauling its entire architecture. Prefix Tuning and LoRA provide lightweight alternatives that fine-tune the model in a more resource-efficient manner, making advanced language technologies accessible even to organizations with limited computational capabilities.</p>
+
+<h1 id="low-rank-adaptation-lora">Low-Rank Adaptation (LoRA)</h1>
+
+<p>The rank of the a matrix tells us how many independent rows or column vectors exist in the matrix. Low rank means that the rank of the matrix is less than the dimensions of the matrix. Adaptation in the name is used to represent the fine-tuning process of the models.</p>
+
+<p>LoRa is motivated by a paper published by Facebook research stating that there exists a low dimension re-parameterization that is as effective as the full parameter space. What this means is that certain downstream tasks do not need to tune all parmeters but instead can transform a small set of weight that can prove to be as effective. Based on this, LoRA paper was written by Microsoft Researchers, and they say that the change in model weights Δw also has a low intrinsic dimension. Formally this is done through rank decomposition:<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*OQRjXNIAbgypWkJFrsrgFg.png" alt="Formula" />
+W₀ are the weights of the large model and are untouched.<br />
+BA are both low rank matrices and their product is exactly the change in model weights Δw<br />
+Important note: We do not need to find the decomposition of Δw into B and A but rather we care about the other direction, that is we construct Δw by multiplying B and A. That also meant that they need to be initialised in such a way that Δw is 0 at the start of training. This is done by setting B to 0 and sampling the values of A from a normal distribution.</p>
+
+<p>This decomposition can be applied on any dance neural network, but however in transformers it is generally applied on the attention weights. During the forward pass, the input is then multiplied by both, the original model weights and the rank decomposition matrices. Something as shown below:
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*Bn_84jbGOPxd88IdSr6yCQ.png" alt="Formula again" /></p>
+<h1 id="scaling-factor">Scaling Factor</h1>
+
+<p>In the paper, the knowledge of a pretrained rank in the denominator corresponds to the intrinsic dimension. This indicates the extent to which we want to decompose the matrices. Typical numbers range from 1 to 64 and express the amount of compression on the weights. The scaling factor, α, is used to control the influence of the decomposition on the original weights. It balances the knowledge of a pretrained model with the adaptation to the new task.</p>
+
+<p>Both the rank, r, and alpha, α, are hyperparameters. If the ratio is 0, we get the original model. If it is 1, we get a fully decomposed model (LoRa model). The ratio can also be more than 1 if you want to emphasize the fine-tuning weights. The scaling helps to stabilize other model hyperparameters, such as the learning rate.
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*wwgTo6O04U50k4LZ.png" alt="Rank Decomposition Matrix" />To put it simply, think of the scaling factor as a way to fine-tune how much of the original model’s knowledge we keep and how much we adapt it for new tasks. Imagine you have a piece of clay that represents your pretrained model. Decomposing the matrices is like molding this clay into a new shape for a different purpose. The rank determines how much you break down the clay, while alpha controls how much of the original clay shape you maintain versus how much you alter it. If alpha is 0, you keep the original shape entirely. If alpha is 1, you fully reshape it. Adjusting these factors allows you to balance between the original model’s performance and the new task’s requirements, ensuring stable performance during training.</p>
+
+<h1 id="optimal-rank">Optimal Rank</h1>
+
+<p>In the LoRA (Low-Rank Adaptation) paper, various experiments demonstrate that very low ranks can already deliver impressive performance. Increasing the rank does not improve performance significantly because the data may have a small intrinsic rank. This, however, depends on the dataset.</p>
+
+<p>When considering optimal rank, ask yourself whether the foundation model has seen similar data to your fine-tuning dataset. If your fine-tuning data is significantly different, a higher rank might be required.</p>
+
+<h1 id="advantages-of-using-low-ranks">Advantages of Using Low Ranks</h1>
+
+<ul>
+  <li><strong>Fewer Weights to Tune</strong>: Lower ranks mean there are fewer parameters that need adjustment, simplifying the tuning process.</li>
+  <li><strong>Reduced Training Time</strong>: With fewer weights, the training process becomes faster, allowing for quicker model iterations.</li>
+  <li><strong>Lower RAM Usage</strong>: The reduced number of weights decreases memory requirements, making it more efficient to train models on machines with limited RAM.</li>
+  <li><strong>Easy Weight Integration</strong>: Weights from rank decomposition can be seamlessly merged into the original model by simply adding them.</li>
+  <li><strong>New Model Without Overhead</strong>: Unlike methods such as adapters, this approach allows you to create a new model without additional overhead.</li>
+</ul>
+
+<h1 id="making-it-intuitive">Making It Intuitive</h1>
+
+<p>Imagine you are a chef fine-tuning a recipe. If your base recipe (foundation model) already includes similar ingredients (data), you don’t need to add much more (low rank). However, if your new recipe (fine-tuning data) is very different, you might need to add a lot of new ingredients (higher rank) to achieve the desired taste (performance). The key is to balance the amount of new ingredients while keeping the preparation (training) time and resources in check. This way, you can create a refined dish (model) efficiently, without overcomplicating the process.</p>
+
+
+<footer>
+  This Article is <b>open source</b>. Noticed a typo? </br>
+  Or something unclear? Send a PR :)
+</footer>
+</div>
+  </main>
+
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    <!--by <strong>Aditya Anil</strong>-->
+  </small>
+
+  <div class="container-fluid justify-content-center">
+
+  
+
+  
+
+    
+    
+      
+
+    
+    
+      
+
+    
+    
+
+    
+    <a class="social mx-1"  href="mailto:aditya8anil@gmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.facebook.com/aditya8anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#3b5998'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-facebook fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.github.com/skaarfacee"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.instagram.com/aaaddii__10"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#405de6'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-instagram fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.linkedin.com/in/aditya-anil"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#007bb5'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-linkedin-in fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://open.spotify.com/user/31oblpch73x3nnnrekndxanrtqvm"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1db954'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-spotify fa-1x"></i>
+    </a>
+  
+  
+
+    
+    
+
+    
+    <a class="social mx-1"  href="https://www.twitter.com/AdityaAnil19"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#1da1f2'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-twitter fa-1x"></i>
+    </a>
+  
+  
+
+</div>
+
+</footer>
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Card Animation jQuery -->
+<script src="/assets/js/card-animation.js"></script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+</body>
+
+</html>
